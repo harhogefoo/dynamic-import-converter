@@ -1,0 +1,36 @@
+{
+  "name": "dynamic-import-converter",
+  "version": "1.0.1",
+  "engines": {
+    "node": ">=12"
+  },
+  "description": "convert import to dynamic import",
+  "main": "src/index.js",
+  "repository": "git@github.com:harhogefoo/dynamic-import-converter.git",
+  "author": "harhogefoo <harimanmon@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "dynami import",
+    "cli"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "dynamic-import-converter": "bin/dynamic-import-converter.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "jest": "^24.9.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "prepare": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.dev.js --watch",
+    "test": "jest"
+  }
+}
