@@ -1,6 +1,6 @@
 {
   "name": "dynamic-import-converter",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "engines": {
     "node": ">=12"
   },
@@ -10,7 +10,7 @@
   "homepage": "https://github.com/harhogefoo/dynamic-import-converter#readme",
   "bugs": {
     "url": "https://github.com/harhogefoo/dynamic-import-converter/issues",
-    "email" : "harimanmon@gmail.com"
+    "email": "harimanmon@gmail.com"
   },
   "author": "harhogefoo <harimanmon@gmail.com>",
   "license": "MIT",
