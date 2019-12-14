@@ -61,12 +61,15 @@ export default {
 ## Install
 ```bash
 npm install -g dynamic-import-converter
+```
 
 or
 
+```bash
 yarn global add dynamic-import-converter
 ```
 
+## Execute
 ```bash
 dyanmic-import-converter ./YOUR_DIRECTORY_PATH]/
 ```
