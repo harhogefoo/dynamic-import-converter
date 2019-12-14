@@ -7,6 +7,11 @@
   "description": "convert import to dynamic import",
   "main": "src/index.js",
   "repository": "git@github.com:harhogefoo/dynamic-import-converter.git",
+  "homepage": "https://github.com/harhogefoo/dynamic-import-converter#readme",
+  "bugs": {
+    "url": "https://github.com/harhogefoo/dynamic-import-converter/issues",
+    "email" : "harimanmon@gmail.com"
+  },
   "author": "harhogefoo <harimanmon@gmail.com>",
   "license": "MIT",
   "keywords": [
