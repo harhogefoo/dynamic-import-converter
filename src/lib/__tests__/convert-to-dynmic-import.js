@@ -2,11 +2,15 @@ import { convertToDynamicImport } from '../convert-to-dynmic-import'
 
 test('convert to expected', () => {
   const target = `<script>\n
-  import ComponentName from "@/components/atoms/ComponentName"\n
+  import ComponentA from "@/components/atoms/ComponentA"\n
+  import ComponentB from "@/components/atoms/ComponentB"\n
+  import ComponentC from '@/components/atoms/ComponentC'\n
   \n
   export default {\n
     components: {\n
-      ComponentName\n
+      ComponentA,\n
+      ComponentB,\n
+      ComponentC\n
     }\n
   }\n
   </script>
@@ -15,7 +19,9 @@ test('convert to expected', () => {
   const expected = `<script>\n
   export default {\n
     components: {\n
-      ComponentName: () => import("@/components/atoms/ComponentName")\n
+      ComponentA: () => import("@/components/atoms/ComponentA"),\n
+      ComponentB: () => import("@/components/atoms/ComponentB"),\n
+      ComponentC: () => import('@/components/atoms/ComponentC')\n
     }\n
   }\n
   </script>
