@@ -1,6 +1,6 @@
 export const convertToDynamicImport = text => {
   // include \n (new line)
-  const pattern = /import (.*) from (["']@\/components\/.*["'])\n/g
+  const pattern = /import (.*) from (["'][@~]\/components\/.*["'])\n/g
   const results = [...text.matchAll(pattern)]
   let convertedText = text
   for (let j = 0; j < results.length; j++) {

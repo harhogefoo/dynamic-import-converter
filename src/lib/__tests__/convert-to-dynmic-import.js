@@ -5,12 +5,14 @@ test('convert to expected', () => {
   import ComponentA from "@/components/atoms/ComponentA"\n
   import ComponentB from "@/components/atoms/ComponentB"\n
   import ComponentC from '@/components/atoms/ComponentC'\n
+  import ComponentD from '~/components/atoms/ComponentD'\n
   \n
   export default {\n
     components: {\n
       ComponentA,\n
       ComponentB,\n
-      ComponentC\n
+      ComponentC,\n
+      ComponentD\n
     }\n
   }\n
   </script>
@@ -21,7 +23,8 @@ test('convert to expected', () => {
     components: {\n
       ComponentA: () => import("@/components/atoms/ComponentA"),\n
       ComponentB: () => import("@/components/atoms/ComponentB"),\n
-      ComponentC: () => import('@/components/atoms/ComponentC')\n
+      ComponentC: () => import('@/components/atoms/ComponentC'),\n
+      ComponentD: () => import('~/components/atoms/ComponentD')\n
     }\n
   }\n
   </script>
