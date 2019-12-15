@@ -3,13 +3,15 @@ module.exports = {
   entry: './src/index.js',
   target: 'node',
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: ['babel-loader'],
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
     extensions: ['.js']
-  },
+  }
 }

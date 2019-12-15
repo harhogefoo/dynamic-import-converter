@@ -21,25 +21,28 @@ export const writeFile = async (text, filePath) => {
 export const getFiles = async (dirPath, filePrefixRegex) => {
   try {
     const fileAndDirs = await fs.readdir(dirPath)
-    const files = await Promise.all(fileAndDirs.map(async (fileAndDir) => {
+    const files = await Promise.all(
+      fileAndDirs.map(async fileAndDir => {
         const fp = `${dirPath}${fileAndDir}`
         const stat = statSync(fp)
-          if (stat.isDirectory()) {
-            return await getFiles(`${fp}/`, filePrefixRegex);
-          }
-          if (stat.isFile() && filePrefixRegex.test(fp)) {
-            return fp
-          }
+        if (stat.isDirectory()) {
+          const result = await getFiles(`${fp}/`, filePrefixRegex)
+          return result
         }
-    ))
+        if (stat.isFile() && filePrefixRegex.test(fp)) {
+          return fp
+        }
+      })
+    )
 
     // remove undefined
     const filtered = files.filter(v => v)
     // flat array
-    const flatten = (array) => array.reduce(
-      (a, c) => (Array.isArray(c) ? a.concat(flatten(c)) : a.concat(c)),
-      []
-    )
+    const flatten = array =>
+      array.reduce(
+        (a, c) => (Array.isArray(c) ? a.concat(flatten(c)) : a.concat(c)),
+        []
+      )
     return flatten(filtered)
   } catch (e) {
     console.error(e)

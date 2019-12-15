@@ -5,11 +5,14 @@ export const convertToDynamicImport = text => {
   let convertedText = text
   for (let j = 0; j < results.length; j++) {
     const [matched, componentName, componentPath] = results[j]
-    convertedText = convertedText.replace(matched, "")
+    convertedText = convertedText.replace(matched, '')
     // find strictly by componentName
     // componentName has blank before one and new line or comma(,) after one
-    const componentNameRegex =  new RegExp(`( +)(${componentName})(\n|,)`)
-    convertedText = convertedText.replace(componentNameRegex, `$1$2: () => import(${componentPath})$3`)
+    const componentNameRegex = new RegExp(`( +)(${componentName})(\n|,)`)
+    convertedText = convertedText.replace(
+      componentNameRegex,
+      `$1$2: () => import(${componentPath})$3`
+    )
   }
   return convertedText
 }
