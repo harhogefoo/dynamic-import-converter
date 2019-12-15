@@ -73,3 +73,9 @@ yarn global add dynamic-import-converter
 ```bash
 dyanmic-import-converter ./YOUR_DIRECTORY_PATH]/
 ```
+
+# Debug
+```bash
+yarn watch
+node dist/main.js
+```
