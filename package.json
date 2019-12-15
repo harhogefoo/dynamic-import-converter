@@ -46,6 +46,7 @@
     "build": "webpack",
     "prepare": "webpack --config webpack.config.js",
     "watch": "webpack --config webpack.dev.js --watch",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   }
 }
