@@ -5,7 +5,7 @@ const { convertToDynamicImport } = require('./lib/convert-to-dynmic-import')
 const main = async () => {
   const args = process.argv
   if (!args[2]) {
-    console.error("[ERROR] You should input args with file path")
+    console.error('[ERROR] You should input args with file path')
     return
   }
   const files = await getFiles(args[2], /.*\.vue$/)
@@ -15,4 +15,6 @@ const main = async () => {
   }
 }
 
-main().then().catch(e => console.error(e))
+main()
+  .then()
+  .catch(e => console.error(e))
