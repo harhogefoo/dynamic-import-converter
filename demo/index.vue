@@ -8,7 +8,7 @@
 <script>
 import Hoge from "@/components/Hoge.vue"
 import Piyo from "@/components/Piyo.vue"
-import Bar from '@/components/Piyo.vue'
+import Bar from '~/components/Bar.vue'
 
 export default {
   components: {
