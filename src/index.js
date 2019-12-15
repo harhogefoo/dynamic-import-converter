@@ -1,5 +1,5 @@
-const { getFiles, readFile, writeFile } = require('./util/file')
-const { convertToDynamicImport } = require('./lib/convert-to-dynmic-import')
+import { getFiles, readFile, writeFile } from './util/file'
+import { convertToDynamicImport } from './lib/convert-to-dynmic-import'
 
 // main
 const main = async () => {

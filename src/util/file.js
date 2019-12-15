@@ -1,5 +1,4 @@
-const fs = require('fs').promises
-const { statSync } = require('fs')
+import { statSync, promises as fs } from 'fs'
 
 export const readFile = async filePath => {
   try {
