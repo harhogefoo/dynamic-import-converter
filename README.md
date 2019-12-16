@@ -71,7 +71,7 @@ yarn global add dynamic-import-converter
 
 ## Execute
 ```bash
-dyanmic-import-converter ./YOUR_DIRECTORY_PATH]/
+dyanmic-import-converter ./YOUR_DIRECTORY_PATH/
 ```
 
 # Debug
