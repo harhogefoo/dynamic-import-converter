@@ -1,7 +1,25 @@
-import { FileUtil } from '../file'
+import { FileUtil } from '../fileUtil'
 
 describe('FileUtil', () => {
   describe('getFiles', () => {
+    test('normal: target file is not found', async () => {
+      const statSyncMock = [
+        {
+          isDirectory: () => false,
+          isFile: () => false
+        }
+      ]
+      const fsStub = {
+        promises: {
+          readdir: () => Promise.resolve(['a.txt'])
+        },
+        statSync: () => statSyncMock.shift()
+      }
+      const fileUtil = new FileUtil(fsStub)
+      const files = await fileUtil.getFiles('dirPath/', /.*\.vue$/)
+      expect(files).toHaveLength(0)
+    })
+
     test('normal: getFiles', async () => {
       const statSyncMock = [
         {

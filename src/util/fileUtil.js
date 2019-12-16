@@ -1,3 +1,5 @@
+import { flattenDeep, extractUndefined } from './array'
+
 export class FileUtil {
   constructor(fs) {
     this.fs = fs.promises
@@ -44,17 +46,8 @@ export class FileUtil {
         })
       )
 
-      console.log(files)
-
-      // remove undefined
-      const filtered = files.filter(v => v)
-      // flat array
-      const flatten = array =>
-        array.reduce(
-          (a, c) => (Array.isArray(c) ? a.concat(flatten(c)) : a.concat(c)),
-          []
-        )
-      return flatten(filtered)
+      // remove undefined then flat array
+      return flattenDeep(extractUndefined(files))
     } catch (e) {
       throw Error(e)
     }
