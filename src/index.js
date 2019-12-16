@@ -2,7 +2,6 @@ import fs from 'fs'
 import { FileUtil } from './util/fileUtil'
 import { convertToDynamicImport } from './lib/convert-to-dynmic-import'
 
-// main
 const main = async () => {
   const args = process.argv
   if (!args[2]) {
