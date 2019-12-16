@@ -66,67 +66,67 @@ describe('FileUtil', () => {
   })
 
   describe('readFile', () => {
-    test('normal: readFile', async () => {
-      const given = 'texttext'
-      const fsStub = {
+    const given = 'texttext'
+    let fsResolveStub
+    let fsRejectStub
+
+    beforeEach(() => {
+      fsResolveStub = {
         promises: {
           readFile: () => Promise.resolve(given)
         }
       }
-      const fileUtil = new FileUtil(fsStub)
-      await expect(fileUtil.readFile('filepath')).resolves.toBe(given)
-    })
-
-    test('exception: readFile, filePath is blank', async () => {
-      const given = 'texttext'
-      const fsStub = {
-        promises: {
-          readFile: () => Promise.resolve(given)
-        }
-      }
-      const fileUtil = new FileUtil(fsStub)
-      await expect(fileUtil.readFile()).rejects.toThrow()
-    })
-
-    test('exception: readFile throw exception', async () => {
-      const fsStub = {
+      fsRejectStub = {
         promises: {
           readFile: () => Promise.reject(new Error('error'))
         }
       }
-      const fileUtil = new FileUtil(fsStub)
+    })
+    test('normal: readFile', async () => {
+      const fileUtil = new FileUtil(fsResolveStub)
+      await expect(fileUtil.readFile('filepath')).resolves.toBe(given)
+    })
+
+    test('exception: readFile, filePath is blank', async () => {
+      const fileUtil = new FileUtil(fsResolveStub)
+      await expect(fileUtil.readFile()).rejects.toThrow()
+    })
+
+    test('exception: readFile throw exception', async () => {
+      const fileUtil = new FileUtil(fsRejectStub)
       await expect(fileUtil.readFile()).rejects.toThrow()
     })
   })
 
   describe('writeFile', () => {
-    test('normal: writeFile', async () => {
-      const fsStub = {
+    let fsResolveStub
+    let fsRejectStub
+
+    beforeEach(() => {
+      fsResolveStub = {
         promises: {
           writeFile: (text, filePath) => Promise.resolve()
         }
       }
-      const fileUtil = new FileUtil(fsStub)
-      await expect(fileUtil.writeFile('text', 'filePath'))
-    })
-
-    test('exception: filePath is blank', async () => {
-      const fsStub = {
-        promises: {
-          writeFile: (text, filePath) => Promise.resolve()
-        }
-      }
-      const fileUtil = new FileUtil(fsStub)
-      await expect(fileUtil.writeFile('text', '')).rejects.toThrow()
-    })
-
-    test('exception: throw exception', async () => {
-      const fsStub = {
+      fsRejectStub = {
         promises: {
           writeFile: (text, filePath) => Promise.reject(new Error('error'))
         }
       }
-      const fileUtil = new FileUtil(fsStub)
+    })
+
+    test('normal: writeFile', async () => {
+      const fileUtil = new FileUtil(fsResolveStub)
+      await expect(fileUtil.writeFile('text', 'filePath'))
+    })
+
+    test('exception: filePath is blank', async () => {
+      const fileUtil = new FileUtil(fsResolveStub)
+      await expect(fileUtil.writeFile('text', '')).rejects.toThrow()
+    })
+
+    test('exception: throw exception', async () => {
+      const fileUtil = new FileUtil(fsRejectStub)
       await expect(fileUtil.writeFile('text', 'filePath')).rejects.toThrow()
     })
   })
