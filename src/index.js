@@ -1,12 +1,11 @@
 import fs from 'fs'
-import { FileUtil } from './util/fileUtil'
+import FileUtil from './util/fileUtil'
 import { convertToDynamicImport } from './lib/convert-to-dynmic-import'
 
 const main = async () => {
   const args = process.argv
   if (!args[2]) {
-    console.error('[ERROR] You should input args with file path')
-    return
+    throw Error('[ERROR] You should input args with file path')
   }
 
   const fileUtil = new FileUtil(fs)

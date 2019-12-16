@@ -1,6 +1,6 @@
 import { flattenDeep, extractUndefined } from './array'
 
-export class FileUtil {
+export default class FileUtil {
   constructor(fs) {
     this.fs = fs.promises
     this.statSync = fs.statSync
