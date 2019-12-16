@@ -1,5 +1,5 @@
 import fs from 'fs'
-import FileUtil from './util/fileUtil'
+import FileUtil from './util/file-util'
 import { convertToDynamicImport } from './lib/convert-to-dynmic-import'
 
 const main = async () => {

@@ -1,4 +1,4 @@
-import FileUtil from '../fileUtil'
+import FileUtil from '../file-util'
 
 describe('FileUtil', () => {
   describe('getFiles', () => {
