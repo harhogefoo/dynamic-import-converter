@@ -1,49 +1,62 @@
-import { statSync, promises as fs } from 'fs'
-
-export const readFile = async filePath => {
-  try {
-    const text = await fs.readFile(filePath, 'utf-8')
-    return text
-  } catch (e) {
-    console.error(e)
+export class FileUtil {
+  constructor(fs) {
+    this.fs = fs.promises
+    this.statSync = fs.statSync
   }
-}
 
-export const writeFile = async (text, filePath) => {
-  try {
-    await fs.writeFile(filePath, text)
-  } catch (e) {
-    console.error(e)
+  async readFile(filePath) {
+    try {
+      if (!filePath) {
+        throw Error('should specify filePath')
+      }
+      const text = await this.fs.readFile(filePath, 'utf-8')
+      return text
+    } catch (e) {
+      throw new Error(e)
+    }
   }
-}
 
-export const getFiles = async (dirPath, filePrefixRegex) => {
-  try {
-    const fileAndDirs = await fs.readdir(dirPath)
-    const files = await Promise.all(
-      fileAndDirs.map(async fileAndDir => {
-        const fp = `${dirPath}${fileAndDir}`
-        const stat = statSync(fp)
-        if (stat.isDirectory()) {
-          const result = await getFiles(`${fp}/`, filePrefixRegex)
-          return result
-        }
-        if (stat.isFile() && filePrefixRegex.test(fp)) {
-          return fp
-        }
-      })
-    )
+  async writeFile(text, filePath) {
+    try {
+      if (!filePath) {
+        throw Error('should specify filePath')
+      }
+      await this.fs.writeFile(filePath, text)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
 
-    // remove undefined
-    const filtered = files.filter(v => v)
-    // flat array
-    const flatten = array =>
-      array.reduce(
-        (a, c) => (Array.isArray(c) ? a.concat(flatten(c)) : a.concat(c)),
-        []
+  async getFiles(dirPath, filePrefixRegex) {
+    try {
+      const fileAndDirs = await this.fs.readdir(dirPath)
+      const files = await Promise.all(
+        fileAndDirs.map(async fileAndDir => {
+          const fp = `${dirPath}${fileAndDir}`
+          const stat = this.statSync(fp)
+          if (stat.isDirectory()) {
+            const result = await this.getFiles(`${fp}/`, filePrefixRegex)
+            return result
+          }
+          if (stat.isFile() && filePrefixRegex.test(fp)) {
+            return fp
+          }
+        })
       )
-    return flatten(filtered)
-  } catch (e) {
-    console.error(e)
+
+      console.log(files)
+
+      // remove undefined
+      const filtered = files.filter(v => v)
+      // flat array
+      const flatten = array =>
+        array.reduce(
+          (a, c) => (Array.isArray(c) ? a.concat(flatten(c)) : a.concat(c)),
+          []
+        )
+      return flatten(filtered)
+    } catch (e) {
+      throw Error(e)
+    }
   }
 }
