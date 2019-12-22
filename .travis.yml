@@ -10,4 +10,4 @@ script:
   - yarn lint
   - yarn test
 after_script:
-  - ./cc-test-reporter after-build -coverage-input-type lcov --exit-code $?
+  - ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $TRAVIS_TEST_RESULT
