@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/harhogefoo/dynamic-import-converter.svg?branch=master)](https://travis-ci.org/harhogefoo/dynamic-import-converter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 # Dynamic import converter
